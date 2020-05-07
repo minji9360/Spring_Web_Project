@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 
 	private BoardService service;
-	/*
+	
 	@GetMapping("/list")
 	public void list(Model model) {
 		log.info("list");
@@ -37,7 +37,6 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-	*/
 	
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, Model model) {
