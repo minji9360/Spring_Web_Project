@@ -38,7 +38,6 @@ public class BoardControllerTests {
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
-	/*
 	@Test
 	public void testList() throws Exception {
 		log.info(
@@ -57,8 +56,8 @@ public class BoardControllerTests {
 			).andReturn().getModelAndView().getViewName();
 		
 		log.info(resultPage);
-	} */
-
+	} 
+	
 	@Test
 	public void testGet() throws Exception {
 		log.info(mockMvc.perform(MockMvcRequestBuilders
@@ -67,7 +66,7 @@ public class BoardControllerTests {
 				.andReturn()
 				.getModelAndView().getModelMap());
 	}
-	/*
+
 	@Test
 	public void testModify() throws Exception {
 		String resultPage = mockMvc
@@ -81,7 +80,6 @@ public class BoardControllerTests {
 		log.info(resultPage);
 				
 	}
-	*/
 	
 	@Test
 	public void testRemove() throws Exception{
