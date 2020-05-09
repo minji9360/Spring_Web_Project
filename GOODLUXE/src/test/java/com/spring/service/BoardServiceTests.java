@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.ui.Model;
 
-import com.spring.domain.BoardVO;
+import com.spring.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,7 +27,13 @@ public class BoardServiceTests {
 		log.info(service);
 		assertNotNull(service);
 	}
+
+	public void list(Criteria cri, Model model) {
+		log.info("list: " + cri);
+		model.addAttribute("list", service.getList(cri));
+	}
 	
+	/*
 	@Test
 	public void testRegister() {
 		BoardVO board = new BoardVO();
@@ -66,4 +73,6 @@ public class BoardServiceTests {
 		board.setTitle("제목 수정합니다.");
 		log.info("MODIFY RESULT: " + service.modify(board));
 	}
+	*/
+	
 }

@@ -3,11 +3,14 @@ package com.spring.mapper;
 import java.util.List;
 
 import com.spring.domain.BoardVO;
+import com.spring.domain.Criteria;
 
 public interface BoardMapper {
 
 	//@Select("select * from tbl_board where bno > 0") // BoardMapper.xml���� SQL���� ó���Ǿ����� ����
 	public List<BoardVO> getList();
+	
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	
 	public void insert(BoardVO board);
 	
