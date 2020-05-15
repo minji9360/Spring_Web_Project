@@ -1,5 +1,11 @@
 package com.spring.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +32,18 @@ public class SampleController {
 						MediaType.APPLICATION_XML_VALUE })
 	public SampleVO getSample() {
 		return new SampleVO(112, "스타", "로드");
+	}
+	
+	@GetMapping(value = "/getList")
+	public List<SampleVO> getList(){
+		return IntStream.range(1, 10).mapToObj(i -> new SampleVO(i, i + "First", i + " Last"))
+				.collect(Collectors.toList());
+	}
+	
+	@GetMapping(value = "/getMap")
+	public Map<String, SampleVO> getMap(){
+		Map<String, SampleVO> map = new HashMap<>();
+		map.put("First", new SampleVO(111, "그루트", "주니어"));
+		return map;
 	}
 }
