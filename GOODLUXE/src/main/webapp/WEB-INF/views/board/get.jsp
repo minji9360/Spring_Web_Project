@@ -61,6 +61,38 @@
 	<!-- end panel -->
 </div>
 <!-- /.row -->
+
+<div class='row'>
+	<div class="col-lg-12">
+		<!-- /.panel -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-comments fa-fw"></i> Reply
+			</div>
+			
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<ul class="chat">
+				<!-- start reply -->
+				<li class="left clearfix" data-rno='12'>
+					<div>
+						<div class="header">
+							<strong class="primary-font">user00</strong>
+							<small class="pull-right text-muted">2020-01-01 09:01</small>
+						</div>
+						<p>Good job!</p>
+					</div>
+				</li>
+				<!-- end reply -->
+				</ul>
+				<!-- ./end ul -->
+			</div>
+			<!-- /.panel .chat-panel -->
+		</div>
+	</div>
+	<!-- ./end row -->
+</div>
+
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
 <script>
@@ -119,7 +151,31 @@ replyService.get(10, function(data){
 
 <script type="text/javascript">
 $(document).ready(function(){
-	console.log(replyService);
+	var bnoValue = '<c:out value="${board.bno}"/>';
+	var replyUL = $(".chat");
+	
+	showList(1);
+	
+	function showList(page){
+		replyService.getList({bno:bnoValue, page: page||1 }, function(list){
+			
+			var str="";
+			if(list == null || list.length == 0){
+				replyUL.html("");
+				
+				return;
+			}
+			for (var i = 0, len = list.length || 0; i < len; i++){
+				str += "<li class='left claerfix' data-rno='" + list[i].rno + "'>";
+				str += "  <div><div class='header'><strong class='primary-font'>" + list[i].replyer + "</strong>";
+				str += "    <small class='pull-right text-muted'>" + replyService.displayTime(list[i].replyDate) + "</small></div>";
+				str += "    <p>" + list[i].reply + "</p></div></li>";
+			}
+			
+			replyUL.html(str);
+			
+		}); // end function
+	} // end showList
 });
 </script>
 
