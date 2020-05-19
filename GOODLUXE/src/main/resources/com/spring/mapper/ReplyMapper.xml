@@ -18,4 +18,11 @@
 	<update id="update">
 		UPDATE tbl_reply SET reply = #{reply}, updatedate = sysdate WHERE rno = #{rno}
 	</update>
+	
+	<select id="getListWithPaging" resultType="com.spring.domain.ReplyVO">
+		SELECT rno, bno, reply, replyer, replyDate, updateDate
+		FROM tbl_reply
+		WHERE bno = #{bno}
+		order by rno ASC
+	</select>
 </mapper>
