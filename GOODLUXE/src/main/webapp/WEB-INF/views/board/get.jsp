@@ -270,6 +270,28 @@ $(document).ready(function(){
 			$(".modal").modal("show");
 		});
 	});
+
+	// 댓글 수정
+	modalModBtn.on("click", function(e){
+		var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
+		
+		replyService.update(reply, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
+	
+	// 댓글 삭제
+	modalRemoveBtn.on("click", function(e){
+		var rno = modal.data("rno");
+		
+		replyService.remove(rno, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(1);
+		});
+	});
 });
 </script>
 
