@@ -20,9 +20,24 @@
 	</update>
 	
 	<select id="getListWithPaging" resultType="com.spring.domain.ReplyVO">
+	
+		<![CDATA[
 		SELECT rno, bno, reply, replyer, replyDate, updateDate
-		FROM tbl_reply
-		WHERE bno = #{bno}
-		order by rno ASC
+		FROM
+			(
+			SELECT /*+INDEX(tbl_reply idx_reply) */
+			 ROWNUM rn, rno, bno, reply, replyer, replyDate, updateDate
+			FROM tbl_reply
+			WHERE bno = #{bno}
+			AND rno > 0
+			AND ROWNUM <= #{cri.pageNum} * #{cri.amount}
+			) WHERE rn > (#{cri.pageNum} - 1) * #{cri.amount}
+		]]>
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+	<![CDATA[
+		SELECT COUNT(rno) FROM tbl_reply WHERE bno = #{bno}
+	]]>
 	</select>
 </mapper>
