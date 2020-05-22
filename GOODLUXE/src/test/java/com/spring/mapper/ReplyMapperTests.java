@@ -26,6 +26,7 @@ public class ReplyMapperTests {
 	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper mapper;
 	
+	/*
 	@Test
 	public void testCreate() {
 		IntStream.rangeClosed(1, 10).forEach(i -> {
@@ -88,4 +89,5 @@ public class ReplyMapperTests {
 		log.info(mapper);
 	}
 
+*/
 }

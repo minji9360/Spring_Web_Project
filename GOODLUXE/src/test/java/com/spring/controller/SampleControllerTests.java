@@ -35,7 +35,7 @@ public class SampleControllerTests{
 	private WebApplicationContext ctx;
 	
 	private MockMvc mockMvc;
-	
+	/*
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
@@ -58,4 +58,5 @@ public class SampleControllerTests{
 				.andExpect(status().is(200));
 				
 	}
+	*/
 }
