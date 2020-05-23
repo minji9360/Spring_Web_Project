@@ -58,10 +58,11 @@ $(document).ready(function(){
 			processData: false,
 			contentType: false,
 			data: formData,
-			type: 'POST',
-			success: function(result){
-				alert("Uploaded");
-			}
+				type: 'POST',
+				dataType: 'json',
+				success: function(result){
+					console.log(result);
+				}
 		}); //$.ajax
 	});
 });
