@@ -12,9 +12,54 @@
 </div>
 <!-- /.row -->
 
+	<style>
+.uploadResult {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+</style>
+
+<style>
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+}
+
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
+		
 			<div class="panel-heading">Board Register</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
@@ -47,6 +92,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-default">
+		
 			<div class="panel-heading">File Attach</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
@@ -71,26 +117,30 @@
 
 <script>
 $(document).ready(function(e){
-	var formObj = $("from[role='form']");
+	var formObj = $("form[role='form']");
 	
 	$("button[type='submit']").on("click", function(e){
 		//e.preventDefault();
 		console.log("submit clicked");
-		
+
+
 		var str="";
 		
 		$(".uploadResult ul li").each(function(i, obj){
 			var jobj = $(obj);
 			
-			console.dir("jobj: " + jobj);
+			console.dir(jobj);
 			
 			str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
 			str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
 			str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
 			str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+jobj.data("type")+"'>";
+			
+			console.dir(str);
 		});
 		formObj.append(str).submit();
 	});
+		
 	
 	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	var maxSize = 5242880; // 5MB
@@ -122,9 +172,10 @@ $(document).ready(function(e){
 				
 				str += "<li data-path='"+obj.uploadPath+"'";
 				str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'";
-				str += "><div>";
+				str += " ><div>";
 				str += "<span> " + obj.fileName + "</span>";
-				str += "<button type='button' data-file=\'"+fileCallPath+"\'data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' ";
+				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
 				str += "<img src='/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str + "</li>";
@@ -132,11 +183,11 @@ $(document).ready(function(e){
 				var fileCallPath = encodeURIComponent( obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
 				var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 				
-				str += "<li data-path='"+obj.uploadPath+"'";
-				str += " data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'";
-				str += "><div>";
+				str += "<li "
+				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
 				str += "<span> " + obj.fileName + "</span>";
-				str += "<button type='button' data-file=\'"+fileCallPath+"\'data-type='file' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' ";
+				str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
 				str += "<img src='/resources/img/attach.jpg'></a>";
 				str += "</div>";
 				str + "</li>";
