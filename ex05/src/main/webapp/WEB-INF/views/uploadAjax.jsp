@@ -193,8 +193,8 @@ $(document).ready(function(){
 	
 	$(".bigPictureWrapper").on("click", function(e){
 		$(".bigPicture").animate({width:'0%', height:'0%'}, 1000);
-		setTimeout(() => {
-			$(this).hide();
+		setTimeout(function(){
+			  $('.bigPictureWrapper').hide();
 		}, 1000);
 	});
 });
