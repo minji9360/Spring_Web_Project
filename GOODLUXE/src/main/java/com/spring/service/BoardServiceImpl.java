@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.BoardAttachVO;
 import com.spring.domain.BoardVO;
@@ -55,9 +56,13 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.update(board) == 1;
 	}
 
+	@Transactional
 	@Override
 	public boolean remove(Long bno) {
-		log.info("remoce....." + bno);
+		log.info("remove....." + bno);
+		
+		attachMapper.deleteAll(bno);
+		
 		return mapper.delete(bno) == 1;
 	}
 

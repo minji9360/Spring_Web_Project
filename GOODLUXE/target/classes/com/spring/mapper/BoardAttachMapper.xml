@@ -15,4 +15,8 @@
 	<select id="findByBno" resultType="com.spring.domain.BoardAttachVO">
 		SELECT * FROM tbl_attach WHERE bno=#{bno}
 	</select>
+	
+	<delete id="deleteAll">
+		DELETE tbl_attach WHERE bno = #{bno}
+	</delete>
 </mapper>
