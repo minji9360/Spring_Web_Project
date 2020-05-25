@@ -189,6 +189,7 @@ $(document).ready(function(){
 	})(); // end function
 
 	$(".uploadResult").on("click", "button", function(e){
+		
 		console.log("delete file");
 		
 		if(confirm("Remove this file?")){
