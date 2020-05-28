@@ -29,6 +29,7 @@ public class MemberTests {
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
 	
+	/*
 	@Test
 	public void testInsertMember() {
 		String sql = "INSERT INTO tbl_member(userid, userpw, username) VALUES (?,?,?)";
@@ -95,4 +96,5 @@ public class MemberTests {
 			}
 		}// end for
 	}
+	*/
 }

@@ -19,7 +19,7 @@ public class MemberMapperTests {
   @Setter(onMethod_ = @Autowired)
   private MemberMapper mapper;
   
-  
+  /*
   @Test
   public void testRead() {
     
@@ -30,5 +30,5 @@ public class MemberMapperTests {
     vo.getAuthList().forEach(authVO -> log.info(authVO));
     
   }
-  
+  */
 }
