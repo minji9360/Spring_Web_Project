@@ -17,7 +17,7 @@ public class SampleTxServiceTests {
 
 	@Setter(onMethod_ = { @Autowired })
 	private SampleTxService service;
-	
+	/*
 	@Test
 	public void testLong() {
 		String str = "Starry\r\n" +
@@ -29,4 +29,5 @@ public class SampleTxServiceTests {
 		
 		service.addData(str);
 	}
+	*/
 }
