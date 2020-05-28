@@ -305,6 +305,8 @@ $(document).ready(function(){
 		uploadUL.append(str);
 	}
 	
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 	
 	$("input[type='file']").change(function(e){
 		var formData = new FormData();
@@ -326,6 +328,9 @@ $(document).ready(function(){
 			contentType: false,
 			data: formData,
 			type: 'POST',
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
 			dataType: 'json',
 				success: function(result){
 					console.log(result);
